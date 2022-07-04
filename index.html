@@ -11,26 +11,30 @@
     <script src="greet-widget.js"></script>
     <script src="enough-airtime.js"></script>
     <script src="phone-bill.js"></script>
+    <script src="longest-word.js"></script>
+    <script src="shortest-word.js"></script>
+
     <script>
        // console.log(greet("jed"))
     </script>
 </head>
 <style>
-    body{
+    body {
         font-family: Arial, Helvetica, sans-serif;
-    background-color: lightcoral;
+        background-color: rgb(178, 237, 245);
     }
 
     .message {
         padding: 1em;
         background-color: lightblue;
         margin-bottom: 1em;
+        margin-top: 1em;
     }
 
     .input>label {
         display: inline-block;
         width: 15em;
-        padding: 0.5em;
+        padding: 0.4em;
         font-weight: bold;
 
     }
@@ -39,27 +43,84 @@
         padding: 0.5em;
         margin: 0.5em;
     }
-    .widgets{
+
+    .widgets {
         display: flex;
     }
-    .widget{
+
+    .widget {
         flex: 1;
         border: 1px solid lightslategray;
         margin: 1em;
-        padding: 1em; /*content margin*/
+        padding: 1em;
+        /*content margin*/
         border-radius: 0.5em;
     }
+    .btnn{
+    background-color:azure;
+    color: rgb(61, 60, 60);
+    font-weight: bold;
+    border: 0;
+    cursor: pointer;
+    border-radius: 0.25em;
+
+}
+.Head{
+    background-color: rgb(101, 159, 235);
+    padding: 1em;
+}
 </style>
 
 <body>
+<div class="Head">
     <h1>My bootcamp Alpine js widgets</h1>
+</div>
+    <div class="widgets">
+        <div class="widget" x-data="{
+        Ssentence:'',
+        shortMessage:'',
+        getShortest(){
+            this.shortMessage=shortestWord(this.Ssentence)
+        }
+
+    }">
+            <h2>Shortest Word in a Sentence</h2>
+            <div class="inaput">
+                <label for="short" style="font-weight:bold" >Write a sentence</label>
+                <input type="text" id="short" x-model="Ssentence">
+                <button x-on:click="getShortest">Find shortest word</button>
+            </div>
+            <div class="message" x-text="shortMessage" x-show="shortMessage.length>0"></div>
+        </div>
+
+        <div class="widget" x-data="{
+            Lsentence:'',
+            longMessage:'',
+            getLongest(){
+             this.longMessage= longestWord(this.Lsentence)
+                }
+
+            }">
+            <h2>Longest Word in a Sentence</h2>
+            <div class="inputt">
+                <label for="long" style="font-weight:bold" >Write a sentence</label>
+                <input type="text" x-model="Lsentence" id="long">
+                <button x-on:click="getLongest">Find Longest Word</button>
+            </div>
+            <div x-show="longMessage.length>0" class="message" x-text="longMessage">
+
+            </div>
+        </div>
+    </div>
+
+
     <div class="widgets">
         <div class="widget" x-data="greetWidget">
             <h2>Greet Widget</h2>
             <div x-show="message.length>0" class="message" x-text="message">
                 You will be greeted here
             </div>
-            <label for="name">Please enter your name</label>
+            <label for="name" style="font-weight:bold ;">Please enter your name</label>
             <input type="text" x-model="name" id="name">
             <button x-on:click="greetMe">Greet</button>
         </div>
@@ -71,7 +132,7 @@
         calculate(){
            this.airtimeMessage= enoughAirtime(this.airtimeUsage, this.availableAmount)
         }
-    }">
+       }">
             <h2>Enough Airtime</h2>
             <div class="input">
                 <label for="usage">Please enter your airtime usage</label>
@@ -82,11 +143,13 @@
                 <input type="text" x-model="availableAmount" id="amount">
 
             </div>
-            <div class="message" x-text="airtimeMessage"> Number of Airtime displayed here
-            </div>
+           
             <button x-on:click="calculate">Calculate airtime usage</button>
+            <div class="message" x-text="airtimeMessage" x-show="airtimeMessage.length>0"> Number of Airtime displayed here
+            </div>
         </div>
     </div>
+    <!--
     <div class="" x-data="{
         billUsage: '',
         billMessage: '',
@@ -101,9 +164,29 @@
             <input type="text" x-model="billUsage" id="billAmount">
             <button x-on:click="billCalculate">Calculate Total Bill</button>
         </div>
-        
+
         <div class="message" x-text="billMessage"></div>
     </div>
+
+
+
+
+
+     <div class="" x-data="{
+        over20List:'',
+        listMessage:'',
+        calculateList(){
+            this.listmessage = findItemsOver20(this.over20List)
+        }
+    }">
+    <h2>Find items over 20</h2>
+    <div class="inp">
+<label for="obj">Insert your list of objects</label>
+<input type="text" id="obj" x-model="over20List">
+<button x-on:click="calculateList">Find Items</button>
+    </div>
+<div class="message" x-text="listMessage"></div>
+    </div>-->
 </body>
 
 </html>
