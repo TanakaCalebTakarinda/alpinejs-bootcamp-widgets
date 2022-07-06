@@ -87,7 +87,7 @@
             <h2>Shortest Word in a Sentence</h2>
             <div class="inaput">
                 <label for="short" style="font-weight:bold" >Write a sentence</label>
-                <input type="text" id="short" x-model="Ssentence">
+                <input type="text" id="short" x-model="Ssentence" placeholder="e.g The dog is happy.">
                 <button x-on:click="getShortest">Find shortest word</button>
             </div>
             <div class="message" x-text="shortMessage" x-show="shortMessage.length>0"></div>
@@ -104,7 +104,7 @@
             <h2>Longest Word in a Sentence</h2>
             <div class="inputt">
                 <label for="long" style="font-weight:bold" >Write a sentence</label>
-                <input type="text" x-model="Lsentence" id="long">
+                <input type="text" x-model="Lsentence" id="long" placeholder="e.g. I like to code">
                 <button x-on:click="getLongest">Find Longest Word</button>
             </div>
             <div x-show="longMessage.length>0" class="message" x-text="longMessage">
@@ -117,12 +117,13 @@
     <div class="widgets">
         <div class="widget" x-data="greetWidget">
             <h2>Greet Widget</h2>
+            
+            <label for="name" style="font-weight:bold ;">Please enter your name</label>
+            <input type="text" x-model="name" id="name" placeholder="e.g. Tanaka">
+            <button x-on:click="greetMe">Greet</button>
             <div x-show="message.length>0" class="message" x-text="message">
                 You will be greeted here
             </div>
-            <label for="name" style="font-weight:bold ;">Please enter your name</label>
-            <input type="text" x-model="name" id="name">
-            <button x-on:click="greetMe">Greet</button>
         </div>
 
         <div class="widget" x-data="{
@@ -134,9 +135,10 @@
         }
        }">
             <h2>Enough Airtime</h2>
+            <h6>*The cost per call is R1.88, data bundles are bought at R12 each and sms's costs R0.75 each. Enter the amount of money you have and you will get the available amount left.</h6>
             <div class="input">
                 <label for="usage">Please enter your airtime usage</label>
-                <input type="text" x-model="airtimeUsage" id="usage">
+                <input type="text" x-model="airtimeUsage" id="usage" placeholder="eg.call,sms">
             </div>
             <div class="input">
                 <label for="amount">Amount Available</label>
